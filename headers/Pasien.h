@@ -1,6 +1,6 @@
 #ifndef PASIEN_H
 #define PASIEN_H
-
+#include "Poli.h"
 #include <iostream>
 using namespace std;
 
