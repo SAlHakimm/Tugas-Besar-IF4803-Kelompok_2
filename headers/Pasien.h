@@ -14,12 +14,10 @@ struct dataPasien {
     int nomorAntrian;
     string prioritas;
 };
-typedef struct elmPasien *addressC;
-typedef struct elmPoli *addressP;
 
+typedef struct elmPasien *addressC;
 typedef struct elmPasien {
-    dataPasien infotype;
-    addressP firstP;
+    dataPasien info;
     addressC nextC;
 };
 
@@ -38,7 +36,7 @@ void deleteLastChild(ListChild &L, addressC &P);
 void deleteAfterChild(ListChild &L, addressC &P, addressC Prec);
 void printInfoChild(ListChild L);  
 bool isEmptyChild(ListChild L);
-void searchByID(ListChild L, string ID);
+void searchByID(ListChild L, int ID);
 void sortByUmur(ListChild &L);
 void countPasienPerPoli(ListChild L, string poliName);
 

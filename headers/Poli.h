@@ -23,14 +23,14 @@ struct elmenP{
 struct ListParent{
     addressP first;
     addressP Last;
-}
+};
 
 void createListParent(ListParent &L);
-addressC createElementParent(Poli x);
+addressP createElementParent(Poli x);
 void insertFirstParent(ListParent &L, addressP P);
 void insertLastParent(ListParent &L, addressP P);
 void insertAfterParent(ListParent &L, addressP P, addressP Prec);
-addressC findParent(ListParent L, string nik);
+addressP findParent(ListParent L, string nik);
 void deleteFirstParent(ListParent &L, addressP &P);
 void deleteLastParent(ListParent &L, addressP &P);
 void deleteAfterParent(ListParent &L, addressP &P, addressP Prec);
