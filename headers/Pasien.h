@@ -30,7 +30,7 @@ addressC createElementChild(dataPasien x);
 void insertFirstChild(ListChild &L, addressC P);
 void insertLastChild(ListChild &L, addressC P);
 void insertAfterChild(ListChild &L, addressC P, addressC Prec);
-addressC findChild(ListChild L, string nik);
+addressC findChild(ListChild L, int ID);
 void deleteFirstChild(ListChild &L, addressC &P);
 void deleteLastChild(ListChild &L, addressC &P);
 void deleteAfterChild(ListChild &L, addressC &P, addressC Prec);
