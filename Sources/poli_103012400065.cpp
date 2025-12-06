@@ -43,6 +43,7 @@ void deleteFirstParent(ListParent &L, addressP &P){
 
 void deleteAfterParent(ListParent &L, addressP &P, addressP Prec){
     //I.S: List terdefinisi dan tidak pada First atau Last
+    P = Prec->next;
     Prec->next = P->next;
     P->next->prev = Prec;
     P->next = NULL;
