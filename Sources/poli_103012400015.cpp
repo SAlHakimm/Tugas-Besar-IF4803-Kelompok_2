@@ -48,12 +48,21 @@ void deleteLastParent(ListParent &L, addressP &P) {
 void printInfoParent(ListParent L) {
     addressP P = L.first;
     addressC C;
+    int count = 1;
     while (P != nullptr) {
-        cout << "Poli: " << P->infoP.namaPoli << ", Dokter: " << P->infoP.namaDokter << ", Kuota: " << P->infoP.kuotaPoli << ", Jumlah Pasien: " << P->infoP.jumlahPasien << endl;
+        cout << "Poli : " << P->infoP.namaPoli << endl;
+        cout << "Dokter : " << P->infoP.namaDokter << endl;
+        cout << "Kuota : " << P->infoP.kuotaPoli << endl;
+        cout << "Jumlah Pasien : " << P->infoP.jumlahPasien << endl;
         C = P->firstChild;
+        cout << "Daftar Pasien: " << endl;
         while (C != nullptr) {
-            cout << "  - Pasien ID: " << C->info.ID << ", Nama: " << C->info.nama << ", Umur: " << C->info.umur << ", Penyakit: " << C->info.penyakit << endl;
+            cout << count << ". Pasien ID : " << C->info.ID << endl;
+            cout << "Nama: " << C->info.nama << endl;
+            cout << "Umur: " << C->info.umur << endl;
+            cout << "Penyakit: " << C->info.penyakit << endl;
             C = C->nextC;
+            count++;
         }
         P = P->next;
     }

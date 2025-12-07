@@ -1,12 +1,8 @@
 #include "Poli.h"
 #include "Pasien.h"
 
-// We'll avoid adding extra helper functions here. Instead we'll inline
-// list initialization and searches directly in main using only cin/cout.
-
 int main() {
 	ListParent LP;
-	// initialize list (inline, no helper function)
 	LP.first = nullptr;
 	LP.Last = nullptr;
 
@@ -20,32 +16,27 @@ int main() {
 		cout << "5. Total Kuota Semua Poli\n";
 		cout << "6. Keluar\n";
 						cout << "Pilih: ";
-						if (!(cin >> choice)) {
-								cin.clear();
-								cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cin >> choice;
+						if (choice >6 || choice <1) {
 								cout << "Input tidak valid.\n";
 								continue;
 						}
-						// consume remaining newline so getline works later
-						cin >> ws;
 
 		if (choice == 1) {
 			infotypeP p;
 			cout << "Nama Poli: ";
-			getline(cin, p.namaPoli);
+			cin >> p.namaPoli;
 			cout << "ID Poli (angka): ";
 			cin >> p.IDPoli;
-			cin >> ws;
 			cout << "Nama Dokter: ";
-			getline(cin, p.namaDokter);
+			cin >> p.namaDokter;
 			cout << "Kuota Poli: ";
 			cin >> p.kuotaPoli;
-			cin >> ws;
 			p.jumlahPasien = 0;
 
 			addressP newP = createElementParent(p);
 			insertLastParent(LP, newP);
-			cout << "Poli ditambahkan.\n";
+			cout << "Poli ditambahkan." << endl;
 
 		} else if (choice == 2) {
 			if (isEmptyParent(LP)) {
@@ -54,16 +45,12 @@ int main() {
 			}
 			int poliID;
 			cout << "Masukkan ID Poli tujuan: ";
-			if (!(cin >> poliID)) {
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "ID tidak valid.\n";
-				continue;
-			}
-			cin >> ws;
-			// find parent inline
+			cin >> poliID;
+			
 			addressP target = LP.first;
-			while (target != nullptr && target->infoP.IDPoli != poliID) target = target->next;
+			while (target != nullptr && target->infoP.IDPoli != poliID) {
+				target = target->next;
+			}
 			if (target == nullptr) {
 				cout << "Poli dengan ID tersebut tidak ditemukan.\n";
 				continue;
@@ -71,24 +58,23 @@ int main() {
 
 			dataPasien dp;
 			cout << "Nama Pasien: ";
-			getline(cin, dp.nama);
+			cin >> dp.nama;
 			cout << "Umur: ";
 			cin >> dp.umur;
-			cin >> ws;
 			cout << "Penyakit: ";
-			getline(cin, dp.penyakit);
+			cin >> dp.penyakit;
 			cout << "ID Pasien (angka unik): ";
 			cin >> dp.ID;
-			cin >> ws;
 			dp.poliTujuan = target->infoP.namaPoli;
 			cout << "Tanggal Kunjungan: ";
-			getline(cin, dp.tanggalKunjungan);
+			cin >> dp.tanggalKunjungan;
 			dp.nomorAntrian = 0;
 			dp.prioritas = "Normal";
-			// create child node inline (no helper function)
+			
 			addressC newC = new elmPasien;
-			newC->infotype = dp;
-			newC->firstP = target;
+			ListChild C;
+			newC->info = dp;
+			//C.firstC = target;
 			newC->nextC = target->firstChild;
 			target->firstChild = newC;
 			target->infoP.jumlahPasien += 1;
@@ -98,7 +84,7 @@ int main() {
 			printInfoParent(LP);
 
 		} else if (choice == 4) {
-			cout << "Total pasien (sum poli): " << hitungJumlahPasienPoli(LP) << "\n";
+			cout << "Total pasien : " << hitungJumlahPasienPoli(LP) << "\n";
 
 		} else if (choice == 5) {
 			int total = 0;
