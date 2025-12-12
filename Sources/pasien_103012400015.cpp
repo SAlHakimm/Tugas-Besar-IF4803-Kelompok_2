@@ -45,7 +45,7 @@ void sortByUmur(ListChild &L) {
     dataPasien temp;
     addressC current;
     if (isEmptyChild(L) || L.firstC->nextC == nullptr) {
-        cout << "List Kosong" << endl; 
+        cout << "List Kosong" << endl;
     }
 
     do {

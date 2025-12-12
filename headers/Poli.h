@@ -34,7 +34,7 @@ addressP findParent(ListParent L, int IDPoli);
 void deleteFirstParent(ListParent &L, addressP &P);
 void deleteLastParent(ListParent &L, addressP &P);
 void deleteAfterParent(ListParent &L, addressP &P, addressP Prec);
-void printInfoParent(ListParent L);  
+void printInfoParent(ListParent L);
 bool isEmptyParent(ListParent L);
 int hitungJumlahPasienPoli(ListParent L);
 int hitungTotalKuota(ListParent L);

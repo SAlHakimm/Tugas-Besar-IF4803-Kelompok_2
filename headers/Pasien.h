@@ -1,6 +1,5 @@
 #ifndef PASIEN_H
 #define PASIEN_H
-#include "Poli.h"
 #include <iostream>
 using namespace std;
 
@@ -34,7 +33,7 @@ addressC findChild(ListChild L, string nik);
 void deleteFirstChild(ListChild &L, addressC &P);
 void deleteLastChild(ListChild &L, addressC &P);
 void deleteAfterChild(ListChild &L, addressC &P, addressC Prec);
-void printInfoChild(ListChild L);  
+void printInfoChild(ListChild L);
 bool isEmptyChild(ListChild L);
 void searchByPenyakit(ListChild L, string penyakit);
 void sortByUmur(ListChild &L);

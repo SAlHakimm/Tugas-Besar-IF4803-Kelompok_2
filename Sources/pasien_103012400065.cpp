@@ -12,11 +12,11 @@ addressC createElementChild(dataPasien x){
 
 void insertLastChild(ListChild &L, addressC P){
     addressC Q;
-     if (L.firstC == NULL) {
+     if (L.firstC == nullptr) {
         L.firstC = P;
     } else {
         Q = L.firstC;
-        while (Q->nextC != NULL) {
+        while (Q->nextC != nullptr) {
             Q = Q->nextC;
         }
         Q->nextC = P;
@@ -27,7 +27,7 @@ void findChild(ListChild L, int ID){
     addressC P = L.firstC;
     bool ketemu = false;
 
-    while (P != NULL) {
+    while (P != nullptr) {
         if (P->info.ID == ID) {
             cout << "=== Data Pasien Ditemukan ===\n";
             cout << "Nama Pasien      : " << P->info.nama << endl;
@@ -36,7 +36,7 @@ void findChild(ListChild L, int ID){
             cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
             cout << "Tgl. Kunjungan   : " << P->info.tanggalKunjungan << endl;
             cout << "Nomor Antrian    : " << P->info.nomorAntrian << endl;
-            cout << "Prioritas        : " << P->info.prioritas << endl;   
+            cout << "Prioritas        : " << P->info.prioritas << endl;
             ketemu = true;
             break;
         }
@@ -49,32 +49,32 @@ void findChild(ListChild L, int ID){
 }
 
 void deleteLastChild(ListChild &L, addressC &P){
-     if (L.firstC == NULL) {
-        P = NULL;  
-    } 
-    else if (L.firstC->nextC == NULL) {
+     if (L.firstC == nullptr) {
+        P = nullptr;
+    }
+    else if (L.firstC->nextC == nullptr) {
         P = L.firstC;
-        L.firstC = NULL;
-    } 
+        L.firstC = nullptr;
+    }
     else {
         addressC Q = L.firstC;
-        while (Q->nextC->nextC != NULL) {
+        while (Q->nextC->nextC != nullptr) {
             Q = Q->nextC;
         }
         P = Q->nextC;
-        Q->nextC = NULL;
+        Q->nextC = nullptr;
     }
 }
 
 
 void printInfoChild(ListChild L){
      addressC P = L.firstC;
-    if (P == NULL) {
+    if (P == nullptr) {
         cout << "Tidak ada pasien." << endl;
         return;
     }
 
-    while (P != NULL) {
+    while (P != nullptr) {
         cout << "Nama: " << P->info.nama << endl;
         cout << "Umur: " << P->info.umur << endl;
         cout << "Penyakit: " << P->info.penyakit << endl;
@@ -92,7 +92,7 @@ void searchByPenyakit(ListChild L, string penyakit){
 addressC P = L.firstC;
     bool ketemu = false;
 
-    while (P != NULL) {
+    while (P != nullptr) {
         if (P->info.penyakit == penyakit) {
             if (!ketemu) {
                 cout << "\n=== Hasil Pencarian Pasien dengan Penyakit: " << penyakit << " ===\n";
@@ -120,7 +120,7 @@ int countPasienPerPoli(ListChild L, string poliName){
     addressC P = L.firstC;
     int count = 0;
 
-    while (P != NULL) {
+    while (P != nullptr) {
         if (P->info.poliTujuan == poliName) {
             count++;
         }

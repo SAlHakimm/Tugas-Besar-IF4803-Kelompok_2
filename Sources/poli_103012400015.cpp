@@ -50,11 +50,13 @@ void printInfoParent(ListParent L) {
     addressC C;
     int count = 1;
     while (P != nullptr) {
+        cout << "ID Poli: "<< P->infoP.IDPoli<<endl;
         cout << "Poli : " << P->infoP.namaPoli << endl;
         cout << "Dokter : " << P->infoP.namaDokter << endl;
         cout << "Kuota : " << P->infoP.kuotaPoli << endl;
         cout << "Jumlah Pasien : " << P->infoP.jumlahPasien << endl;
         C = P->firstChild;
+        cout << "==============================================\n";
         cout << "Daftar Pasien: " << endl;
         while (C != nullptr) {
             cout << count << ". Pasien ID : " << C->info.ID << endl;
@@ -63,6 +65,7 @@ void printInfoParent(ListParent L) {
             cout << "Penyakit: " << C->info.penyakit << endl;
             C = C->nextC;
             count++;
+            cout << "==============================================\n";
         }
         P = P->next;
     }

@@ -10,7 +10,7 @@ void createListParent(ListParent &L){
 void insertFirstParent(ListParent &L, addressP P){
     if (L.first == nullptr && L.Last == nullptr){
         L.first = P;
-        L.Last == P;
+        L.Last = P;
     }else{
         P->next = L.first;
         L.first->prev = P;
@@ -19,11 +19,16 @@ void insertFirstParent(ListParent &L, addressP P){
 }
 
 void insertAfterParent(ListParent &L, addressP P, addressP Prec){
-    //I.S: List terdefinisi dan tidak pada First atau Last
-    P->next = Prec->next;
-    P->prev = Prec;
-    Prec->next->prev = P;       
-    Prec->next = P;
+    if (Prec == L.Last) {
+        Prec->next = P;
+        P->prev = Prec;
+        L.Last = P;
+    } else {
+        P->next = Prec->next;
+        P->prev = Prec;
+        Prec->next->prev = P;
+        Prec->next = P;
+    }
 }
 
 void deleteFirstParent(ListParent &L, addressP &P){
@@ -42,12 +47,17 @@ void deleteFirstParent(ListParent &L, addressP &P){
 }
 
 void deleteAfterParent(ListParent &L, addressP &P, addressP Prec){
-    //I.S: List terdefinisi dan tidak pada First atau Last
     P = Prec->next;
-    Prec->next = P->next;
-    P->next->prev = Prec;
-    P->next = NULL;
-    P->prev = NULL;
+    if (P == L.Last) {
+        L.Last = Prec;
+        P->prev = nullptr;
+
+    } else {
+        Prec->next = P->next;
+        P->next->prev = Prec;
+        P->next = nullptr;
+        P->prev = nullptr;
+    }
 }
 
 bool isEmptyParent(ListParent L){
