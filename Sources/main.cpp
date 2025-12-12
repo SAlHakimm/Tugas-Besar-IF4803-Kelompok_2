@@ -1,6 +1,6 @@
 #include <iostream>
-#include "pasien.h"
-#include "poli.h"
+#include "../headers/Poli.h"
+#include "../headers/Pasien.h"
 
 using namespace std;
 

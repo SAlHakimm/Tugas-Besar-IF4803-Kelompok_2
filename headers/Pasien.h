@@ -38,5 +38,8 @@ bool isEmptyChild(ListChild L);
 void searchByPenyakit(ListChild L, string penyakit);
 void sortByUmur(ListChild &L);
 int countPasienPerPoli(ListChild L, string poliName);
+void riwayatPenyakit(ListChild L, string namaPasien);
+void riwayatKunjungan(ListChild L, string namaPasien);
+void rataUmurPerPoli(ListChild L, string poliName);
 
 #endif

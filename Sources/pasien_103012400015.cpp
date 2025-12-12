@@ -62,3 +62,73 @@ void sortByUmur(ListChild &L) {
         }
     } while (swapped);
 }
+
+void riwayatPenyakit(ListChild L, string namaPasien){
+    addressC P = L.firstC;
+    bool ketemu = false;
+    while (P != nullptr) {
+        if (P->info.nama == namaPasien) {
+            cout << "=== RIWAYAT PENYAKIT PASIEN ===\n";
+            cout << "Nama            : " << P->info.nama << endl;
+            cout << "Umur            : " << P->info.umur << endl;
+            cout << "Penyakit        : " << P->info.penyakit << endl;
+            cout << "ID              : " << P->info.ID << endl;
+            cout << "Poli Tujuan     : " << P->info.poliTujuan << endl;
+            cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
+            cout << "Nomor Antrian   : " << P->info.nomorAntrian << endl;
+            cout << "Prioritas       : " << P->info.prioritas << endl;
+            cout << "===============================\n";  
+            ketemu = true;
+            break;
+        }
+        P = P->nextC;
+    }
+    if (!ketemu){
+        cout<<"Nama Pasien Tidak Ditemukan\n";
+    }
+}
+
+void riwayatKunjungan(ListChild L, string namaPasien){
+    addressC P = L.firstC;
+    bool ketemu = false;
+    while (P != nullptr) {
+        if (P->info.nama == namaPasien) {
+            cout << "=== RIWAYAT KUNJUNGAN PASIEN ===\n";
+            cout << "Nama            : " << P->info.nama << endl;
+            cout << "Umur            : " << P->info.umur << endl;
+            cout << "Penyakit       : " << P->info.penyakit << endl;
+            cout << "ID              : " << P->info.ID << endl;
+            cout << "Poli Tujuan     : " << P->info.poliTujuan << endl;
+            cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
+            cout << "===============================\n";  
+        }
+        P = P->nextC;
+    }    
+    if (!ketemu){
+        cout<<"Nama Pasien Tidak Ditemukan\n";
+    }
+}
+
+void rataUmurPerPoli(ListChild L, string poliName){
+    addressC P = L.firstC;
+    int totalUmur = 0;
+    int jumlahPasien = 0;
+    bool ketemu = false;
+    float rataRata;
+
+    while (P != nullptr) {
+        if (P->info.poliTujuan == poliName) {
+            totalUmur += P->info.umur;
+            jumlahPasien++;
+            ketemu = true;
+        }
+        P = P->nextC;
+    }
+
+    if (ketemu && jumlahPasien > 0) {
+        rataRata = (float)((totalUmur) / jumlahPasien);
+        cout << "Rata-rata umur pasien di poli " << poliName << " adalah: " << rataRata << " tahun.\n";
+    } else {
+        cout << "Tidak ada pasien di poli " << poliName << ".\n";
+    }
+}
