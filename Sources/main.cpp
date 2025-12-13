@@ -5,16 +5,16 @@
 using namespace std;
 
 ListParent ListPoli;
-ListChild ListPasien;
+
 void menuAdmin(ListParent &L);
 void menuUser(ListParent &L);
 
-int main()
-{
+
+
+int main(){
     createListParent(ListPoli);
-    createListChild(ListPasien);
-    int pilihan;
-    pilihan = 0;
+
+    int pilihan = 0;
     while (pilihan != 3) {
         cout << endl;
         cout << "============= Selamat Datang di Aplikasi ============\n";
@@ -31,9 +31,10 @@ int main()
         }else if(pilihan == 2){
             menuUser(ListPoli);
         }else if(pilihan == 3){
-            cout << "Terimakasih Telah Menggunakan Aplikasi";
+            cout << "Terimakasih Telah Menggunakan Aplikasi\n";
         }else{
-            cout << "Pilihan Invalid";
+            cout << "Pilihan Invalid\n";
         }
     }
+    return 0;
 }

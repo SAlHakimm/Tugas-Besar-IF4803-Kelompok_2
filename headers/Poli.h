@@ -38,5 +38,7 @@ void printInfoParent(ListParent L);
 bool isEmptyParent(ListParent L);
 int hitungJumlahPasienPoli(ListParent L);
 int hitungTotalKuota(ListParent L);
+void insertLastPasienKePoli(addressP poli, addressC P);
+
 
 #endif

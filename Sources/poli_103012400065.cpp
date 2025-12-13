@@ -50,6 +50,7 @@ void deleteAfterParent(ListParent &L, addressP &P, addressP Prec){
     P = Prec->next;
     if (P == L.Last) {
         L.Last = Prec;
+        Prec->next = nullptr;
         P->prev = nullptr;
 
     } else {
@@ -75,5 +76,4 @@ int hitungTotalKuota(ListParent L){
 
     return total;
 }
-
 

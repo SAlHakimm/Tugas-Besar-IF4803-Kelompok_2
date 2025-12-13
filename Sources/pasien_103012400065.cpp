@@ -23,30 +23,17 @@ void insertLastChild(ListChild &L, addressC P){
     }
 }
 
-void findChild(ListChild L, int ID){
+addressC findChild(ListChild L, int ID) {
     addressC P = L.firstC;
-    bool ketemu = false;
-
     while (P != nullptr) {
         if (P->info.ID == ID) {
-            cout << "=== Data Pasien Ditemukan ===\n";
-            cout << "Nama Pasien      : " << P->info.nama << endl;
-            cout << "Umur             : " << P->info.umur << " tahun" << endl;
-            cout << "Penyakit         : " << P->info.penyakit << endl;
-            cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
-            cout << "Tgl. Kunjungan   : " << P->info.tanggalKunjungan << endl;
-            cout << "Nomor Antrian    : " << P->info.nomorAntrian << endl;
-            cout << "Prioritas        : " << P->info.prioritas << endl;
-            ketemu = true;
-            break;
+            return P;
         }
         P = P->nextC;
     }
-
-    if (!ketemu){
-        cout<<"ID Pasien Tidak Ditemukan\n";
-    }
+    return nullptr;
 }
+
 
 void deleteLastChild(ListChild &L, addressC &P){
      if (L.firstC == nullptr) {

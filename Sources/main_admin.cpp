@@ -144,7 +144,17 @@ void menuPoli(ListParent &LP){
             int id;
             cout << "Masukan ID Poli Yang Akan dicari: ";
             cin >> id;
-            findParent(LP, id);
+
+            addressP P = findParent(LP, id);
+            if (P != nullptr) {
+                cout << "Poli ditemukan!\n";
+                cout << "Nama Poli: " << P->infoP.namaPoli << endl;
+                cout << "Dokter: " << P->infoP.namaDokter << endl;
+                cout << "Kuota: " << P->infoP.kuotaPoli << endl;
+            } else {
+                cout << "Poli tidak ditemukan!\n";
+            }
+
         }else if (pilih == 8){
             cout << endl;
             cout << "===============Poli===============\n";

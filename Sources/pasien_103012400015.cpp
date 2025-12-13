@@ -63,8 +63,8 @@ void sortByUmur(ListChild &L) {
     } while (swapped);
 }
 
-void riwayatPenyakit(ListChild L, string namaPasien){
-    addressC P = L.firstC;
+void riwayatPenyakit(addressC firstChild, string namaPasien){
+    addressC P = firstChild;
     bool ketemu = false;
     while (P != nullptr) {
         if (P->info.nama == namaPasien) {
@@ -77,7 +77,7 @@ void riwayatPenyakit(ListChild L, string namaPasien){
             cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
             cout << "Nomor Antrian   : " << P->info.nomorAntrian << endl;
             cout << "Prioritas       : " << P->info.prioritas << endl;
-            cout << "===============================\n";  
+            cout << "===============================\n";
             ketemu = true;
             break;
         }
@@ -88,29 +88,35 @@ void riwayatPenyakit(ListChild L, string namaPasien){
     }
 }
 
-void riwayatKunjungan(ListChild L, string namaPasien){
-    addressC P = L.firstC;
+void riwayatKunjungan(addressC firstChild, string namaPasien){
+    addressC P = firstChild;
     bool ketemu = false;
+
     while (P != nullptr) {
         if (P->info.nama == namaPasien) {
             cout << "=== RIWAYAT KUNJUNGAN PASIEN ===\n";
-            cout << "Nama            : " << P->info.nama << endl;
-            cout << "Umur            : " << P->info.umur << endl;
-            cout << "Penyakit       : " << P->info.penyakit << endl;
-            cout << "ID              : " << P->info.ID << endl;
-            cout << "Poli Tujuan     : " << P->info.poliTujuan << endl;
+            cout << "Nama             : " << P->info.nama << endl;
+            cout << "Umur             : " << P->info.umur << endl;
+            cout << "Penyakit         : " << P->info.penyakit << endl;
+            cout << "ID               : " << P->info.ID << endl;
+            cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
             cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
-            cout << "===============================\n";  
+            cout << "===============================\n";
+
+            ketemu = true;
+            break; // keluar karena data sudah ditemukan
         }
         P = P->nextC;
-    }    
-    if (!ketemu){
-        cout<<"Nama Pasien Tidak Ditemukan\n";
+    }
+
+    if (!ketemu) {
+        cout << "Nama Pasien Tidak Ditemukan\n";
     }
 }
 
-void rataUmurPerPoli(ListChild L, string poliName){
-    addressC P = L.firstC;
+
+void rataUmurPerPoli(addressC firstChild, string poliName){
+    addressC P = firstChild;
     int totalUmur = 0;
     int jumlahPasien = 0;
     bool ketemu = false;

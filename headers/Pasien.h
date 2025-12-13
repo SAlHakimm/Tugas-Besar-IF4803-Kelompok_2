@@ -29,7 +29,7 @@ addressC createElementChild(dataPasien x);
 void insertFirstChild(ListChild &L, addressC P);
 void insertLastChild(ListChild &L, addressC P);
 void insertAfterChild(ListChild &L, addressC P, addressC Prec);
-addressC findChild(ListChild L, string nik);
+addressC findChild(ListChild L, int ID);
 void deleteFirstChild(ListChild &L, addressC &P);
 void deleteLastChild(ListChild &L, addressC &P);
 void deleteAfterChild(ListChild &L, addressC &P, addressC Prec);
@@ -38,8 +38,9 @@ bool isEmptyChild(ListChild L);
 void searchByPenyakit(ListChild L, string penyakit);
 void sortByUmur(ListChild &L);
 int countPasienPerPoli(ListChild L, string poliName);
-void riwayatPenyakit(ListChild L, string namaPasien);
-void riwayatKunjungan(ListChild L, string namaPasien);
-void rataUmurPerPoli(ListChild L, string poliName);
+void riwayatPenyakit(addressC firstChild, string namaPasien);
+void riwayatKunjungan(addressC firstChild, string namaPasien);
+void rataUmurPerPoli(addressC firstChild, string poliName);
+
 
 #endif
