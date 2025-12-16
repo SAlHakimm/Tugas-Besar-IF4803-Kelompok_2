@@ -65,32 +65,26 @@ void sortByUmur(ListChild &L) {
 
 void riwayatPenyakit(addressC firstChild, string namaPasien){
     addressC P = firstChild;
-    bool ketemu = false;
+
     while (P != nullptr) {
         if (P->info.nama == namaPasien) {
             cout << "=== RIWAYAT PENYAKIT PASIEN ===\n";
-            cout << "Nama            : " << P->info.nama << endl;
-            cout << "Umur            : " << P->info.umur << endl;
-            cout << "Penyakit        : " << P->info.penyakit << endl;
-            cout << "ID              : " << P->info.ID << endl;
-            cout << "Poli Tujuan     : " << P->info.poliTujuan << endl;
+            cout << "Nama             : " << P->info.nama << endl;
+            cout << "Umur             : " << P->info.umur << endl;
+            cout << "Penyakit         : " << P->info.penyakit << endl;
+            cout << "ID               : " << P->info.ID << endl;
+            cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
             cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
-            cout << "Nomor Antrian   : " << P->info.nomorAntrian << endl;
-            cout << "Prioritas       : " << P->info.prioritas << endl;
+            cout << "Nomor Antrian    : " << P->info.nomorAntrian << endl;
+            cout << "Prioritas        : " << P->info.prioritas << endl;
             cout << "===============================\n";
-            ketemu = true;
-            break;
         }
         P = P->nextC;
-    }
-    if (!ketemu){
-        cout<<"Nama Pasien Tidak Ditemukan\n";
     }
 }
 
 void riwayatKunjungan(addressC firstChild, string namaPasien){
     addressC P = firstChild;
-    bool ketemu = false;
 
     while (P != nullptr) {
         if (P->info.nama == namaPasien) {
@@ -102,15 +96,9 @@ void riwayatKunjungan(addressC firstChild, string namaPasien){
             cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
             cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
             cout << "===============================\n";
-
-            ketemu = true;
-            break; // keluar karena data sudah ditemukan
+            return; // aman: stop di poli ini
         }
         P = P->nextC;
-    }
-
-    if (!ketemu) {
-        cout << "Nama Pasien Tidak Ditemukan\n";
     }
 }
 

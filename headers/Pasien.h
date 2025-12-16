@@ -33,7 +33,7 @@ addressC findChild(ListChild L, int ID);
 void deleteFirstChild(ListChild &L, addressC &P);
 void deleteLastChild(ListChild &L, addressC &P);
 void deleteAfterChild(ListChild &L, addressC &P, addressC Prec);
-void printInfoChild(ListChild L);
+void printInfoChild(addressC first);
 bool isEmptyChild(ListChild L);
 void searchByPenyakit(ListChild L, string penyakit);
 void sortByUmur(ListChild &L);

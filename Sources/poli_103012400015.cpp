@@ -70,7 +70,7 @@ void printInfoParent(ListParent L) {
             C = C->nextC;
             count++;
         }
-
+        cout << endl;
         P = P->next;
     }
 }

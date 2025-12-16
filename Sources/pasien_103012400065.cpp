@@ -54,8 +54,9 @@ void deleteLastChild(ListChild &L, addressC &P){
 }
 
 
-void printInfoChild(ListChild L){
-     addressC P = L.firstC;
+void printInfoChild(addressC first){
+   addressC P = first;
+
     if (P == nullptr) {
         cout << "Tidak ada pasien." << endl;
         return;

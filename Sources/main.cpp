@@ -8,11 +8,11 @@ ListParent ListPoli;
 
 void menuAdmin(ListParent &L);
 void menuUser(ListParent &L);
-
-
+void initDummyData(ListParent &L);
 
 int main(){
     createListParent(ListPoli);
+    initDummyData(ListPoli);
 
     int pilihan = 0;
     while (pilihan != 3) {

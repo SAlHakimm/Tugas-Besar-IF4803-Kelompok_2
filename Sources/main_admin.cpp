@@ -6,6 +6,7 @@ using namespace std;
 void menuPoli(ListParent &LP);
 void menuPasien(ListParent &LP);
 
+
 void menuAdmin(ListParent &L){
     int pilih;
     pilih = 0;
@@ -68,6 +69,7 @@ void menuPoli(ListParent &LP){
             cout << endl;
             P = createElementParent(x);
             insertFirstParent(LP, P);
+
         }else if(pilih == 2){
             cout << "Masukan Nama Poli: ";
             cin >> x.namaPoli;
@@ -85,6 +87,7 @@ void menuPoli(ListParent &LP){
             P = createElementParent(x);
             insertLastParent(LP, P);
             cout << endl;
+
         }else if(pilih == 3){
             int idPrec;
             cout << "--- Insert After Poli ---\n";
@@ -112,12 +115,15 @@ void menuPoli(ListParent &LP){
                 } else {
                     cout << "Poli dengan ID Prec " << idPrec << " tidak ditemukan!\n";
                 }
+
         }else if (pilih == 4){
             deleteFirstParent(LP, P);
             cout << "Data Berhasil Dihapus! \n";
+
         }else if (pilih == 5){
             deleteLastParent(LP, P);
             cout << "Data Berhasil Dihapus! \n";
+
         }else if (pilih == 6){
             int idPrec;
             cout << "\n--- Delete After Poli ---\n";
@@ -140,6 +146,7 @@ void menuPoli(ListParent &LP){
                     cout << ">> Tidak ada elemen yang dapat dihapus setelah ID tersebut.\n";
                 }
             }
+
         }else if (pilih == 7){
             int id;
             cout << "Masukan ID Poli Yang Akan dicari: ";
@@ -159,9 +166,11 @@ void menuPoli(ListParent &LP){
             cout << endl;
             cout << "===============Poli===============\n";
             printInfoParent(LP);
+
         }else if (pilih == 9){
             cout << "Kembali Ke Menu Admin";
             cout << "\n";
+
         }else{
             cout << "Pilihan Tidak Valid";
             cout << "\n";
@@ -170,175 +179,83 @@ void menuPoli(ListParent &LP){
 }
 
 void menuPasien(ListParent &LC){
-    int pilih;
+    int pilih = 0;
     dataPasien x;
-    addressC P, Prec;
-    addressP poli;
+    addressC P = nullptr, Prec = nullptr;
+    addressP poli = nullptr;
     int idPoli, idPasien, idPrec;
-    static int autoID = 100;
-    pilih = 0;
+    static int autoID = 1000;
+
     while (pilih != 9) {
-        cout << endl;
-        cout << "============= Menu Pasien ============\n";
-        cout << "1. Insert First Pasien ke Poli\n";
-        cout << "2. Insert Last Pasien ke Poli\n";
-        cout << "3. Insert After Pasien (berdasarkan ID Pasien pada Poli)\n";
-        cout << "4. Delete First Pasien dari Poli\n";
-        cout << "5. Delete Last Pasien dari Poli\n";
-        cout << "6. Delete After Pasien dari Poli\n";
-        cout << "7. Cari Pasien Berdasarkan ID (semua poli)\n";
-        cout << "8. Tampilkan Seluruh Pasien (semua poli)\n";
+        cout << "\n============= Menu Pasien ============\n";
+        cout << "1. Insert First Pasien\n";
+        cout << "2. Insert Last Pasien\n";
+        cout << "3. Insert After Pasien\n";
+        cout << "4. Delete First Pasien\n";
+        cout << "5. Delete Last Pasien\n";
+        cout << "6. Delete After Pasien\n";
+        cout << "7. Cari Pasien\n";
+        cout << "8. Tampilkan Semua Pasien\n";
         cout << "9. Back\n";
-        cout << "=====================================\n";
         cout << "Choose option: ";
         cin >> pilih;
-        cout << endl;
 
-        // Untuk pilihan yang memerlukan poli, minta ID poli dan cari parent
-        if (pilih >= 1 && pilih <= 6) {
-            cout << "Masukkan ID Poli Yang Pasien Akan Kunjungi: ";
+        bool butuhPoli = (pilih >= 1 && pilih <= 6);
+
+        if (butuhPoli) {
+            cout << "Masukkan ID Poli: ";
             cin >> idPoli;
-
             poli = findParent(LC, idPoli);
 
             if (poli == nullptr) {
                 cout << "Poli tidak ditemukan!\n";
-                continue;
             }
         }
 
-        if (pilih == 1) {
-            cout << "Nama: ";
-            cin >> x.nama;
-            cout << "Umur: ";
-            cin >> x.umur;
-            cout << "Penyakit: ";
-            cin >> x.penyakit;
+        if (pilih == 1 && poli != nullptr) {
+            cout << "Nama: "; cin >> x.nama;
+            cout << "Umur: "; cin >> x.umur;
+            cout << "Penyakit: "; cin >> x.penyakit;
 
             x.ID = autoID++;
-            cout << "ID Pasien = " << x.ID << endl;
-
             x.poliTujuan = poli->infoP.namaPoli;
-            cout << "Tanggal Kunjungan: ";
-            cin >> x.tanggalKunjungan;
-            cout << "Nomor Antrian: ";
-            cin >> x.nomorAntrian;
-            cout << "Prioritas: ";
-            cin >> x.prioritas;
+            cout << "Tanggal: "; cin >> x.tanggalKunjungan;
+            cout << "Antrian: "; cin >> x.nomorAntrian;
+            cout << "Prioritas: "; cin >> x.prioritas;
+
+            P = createElementChild(x);
+            P->nextC = poli->firstChild;
+            poli->firstChild = P;
+            poli->infoP.jumlahPasien++;
+
+            cout << "Pasien berhasil ditambahkan\n";
+
+        }else if (pilih == 2 && poli != nullptr) {
+            cout << "Nama: "; cin >> x.nama;
+            cout << "Umur: "; cin >> x.umur;
+            cout << "Penyakit: "; cin >> x.penyakit;
+
+            x.ID = autoID++;
+            x.poliTujuan = poli->infoP.namaPoli;
+            cout << "Tanggal: "; cin >> x.tanggalKunjungan;
+            cout << "Antrian: "; cin >> x.nomorAntrian;
+            cout << "Prioritas: "; cin >> x.prioritas;
 
             P = createElementChild(x);
 
-            // bungkus poli->firstChild ke ListChild sementara
-            ListChild tempChild;
-            tempChild.firstC = poli->firstChild;
-
-            insertFirstChild(tempChild, P);
-
-            // simpan kembali ke node parent
-            poli->firstChild = tempChild.firstC;
-            poli->infoP.jumlahPasien++;
-
-            cout << "Pasien berhasil ditambahkan!\n";
-        } else if (pilih == 2) {
-            cout << "Nama: ";
-            cin >> x.nama;
-            cout << "Umur: ";
-            cin >> x.umur;
-            cout << "Penyakit: ";
-            cin >> x.penyakit;
-
-            x.ID = autoID++;
-            cout << "ID Pasien = " << x.ID << endl;
-
-            x.poliTujuan = poli->infoP.namaPoli;
-            cout << "Tanggal Kunjungan: ";
-            cin >> x.tanggalKunjungan;
-            cout << "Nomor Antrian: ";
-            cin >> x.nomorAntrian;
-            cout << "Prioritas: ";
-            cin >> x.prioritas;
-
-            P = createElementChild(x);
-
-            ListChild tempChild;
-            tempChild.firstC = poli->firstChild;
-
-            insertLastChild(tempChild, P);
-
-            poli->firstChild = tempChild.firstC;
-            poli->infoP.jumlahPasien++;
-
-            cout << "Pasien berhasil ditambahkan!\n";
-        } else if (pilih == 3) {
-            cout << "Masukkan ID Pasien (Prec): ";
-            cin >> idPrec;
-
-            // Cari Prec pada daftar pasien poli tersebut
-            Prec = poli->firstChild;
-            while (Prec != nullptr && Prec->info.ID != idPrec)
-                Prec = Prec->nextC;
-
-            if (Prec == nullptr) {
-                cout << "Pasien Prec tidak ditemukan!\n";
-                continue;
+            if (poli->firstChild == nullptr)
+                poli->firstChild = P;
+            else {
+                addressC Q = poli->firstChild;
+                while (Q->nextC != nullptr)
+                    Q = Q->nextC;
+                Q->nextC = P;
             }
 
-            cout << "Nama: ";
-            cin >> x.nama;
-            cout << "Umur: ";
-            cin >> x.umur;
-            cout << "Penyakit: ";
-            cin >> x.penyakit;
-
-            x.ID = autoID++;
-            cout << "ID Pasien Baru = " << x.ID << endl;
-
-            x.poliTujuan = poli->infoP.namaPoli;
-            cout << "Tanggal Kunjungan: ";
-            cin >> x.tanggalKunjungan;
-            cout << "Nomor Antrian: ";
-            cin >> x.nomorAntrian;
-            cout << "Prioritas: ";
-            cin >> x.prioritas;
-
-            P = createElementChild(x);
-
-            ListChild tempChild;
-            tempChild.firstC = poli->firstChild;
-
-            insertAfterChild(tempChild, P, Prec);
-
-            poli->firstChild = tempChild.firstC;
             poli->infoP.jumlahPasien++;
+            cout << "Pasien berhasil ditambahkan\n";
 
-            cout << "Insert After berhasil!\n";
-        } else if (pilih == 4) {
-            ListChild tempChild;
-            tempChild.firstC = poli->firstChild;
-
-            deleteFirstChild(tempChild, P);
-            poli->firstChild = tempChild.firstC;
-
-            if (P != nullptr) {
-                cout << "Pasien \"" << P->info.nama << "\" berhasil dihapus!\n";
-                poli->infoP.jumlahPasien--;
-            } else {
-                cout << "Tidak ada pasien di poli ini.\n";
-            }
-        } else if (pilih == 5) {
-            ListChild tempChild;
-            tempChild.firstC = poli->firstChild;
-
-            deleteLastChild(tempChild, P);
-            poli->firstChild = tempChild.firstC;
-
-            if (P != nullptr) {
-                cout << "Pasien \"" << P->info.nama << "\" berhasil dihapus!\n";
-                poli->infoP.jumlahPasien--;
-            } else {
-                cout << "Tidak ada pasien di poli ini.\n";
-            }
-        } else if (pilih == 6) {
+        }else if (pilih == 3 && poli != nullptr) {
             cout << "Masukkan ID Pasien (Prec): ";
             cin >> idPrec;
 
@@ -346,62 +263,107 @@ void menuPasien(ListParent &LC){
             while (Prec != nullptr && Prec->info.ID != idPrec)
                 Prec = Prec->nextC;
 
-            if (Prec == nullptr || Prec->nextC == nullptr) {
-                cout << "Delete After gagal (Prec tidak valid)\n";
+            if (Prec != nullptr) {
+                cout << "Nama: "; cin >> x.nama;
+                cout << "Umur: "; cin >> x.umur;
+                cout << "Penyakit: "; cin >> x.penyakit;
+
+                x.ID = autoID++;
+                x.poliTujuan = poli->infoP.namaPoli;
+                cout << "Tanggal: "; cin >> x.tanggalKunjungan;
+                cout << "Antrian: "; cin >> x.nomorAntrian;
+                cout << "Prioritas: "; cin >> x.prioritas;
+
+                P = createElementChild(x);
+                P->nextC = Prec->nextC;
+                Prec->nextC = P;
+                poli->infoP.jumlahPasien++;
+
+                cout << "Insert After berhasil\n";
             } else {
-                ListChild tempChild;
-                tempChild.firstC = poli->firstChild;
-
-                deleteAfterChild(tempChild, P, Prec);
-                poli->firstChild = tempChild.firstC;
-
-                if (P != nullptr) {
-                    cout << "Pasien \"" << P->info.nama << "\" berhasil dihapus!\n";
-                    poli->infoP.jumlahPasien--;
-                } else {
-                    cout << "Delete After gagal (tidak ada node di posisi tersebut)\n";
-                }
+                cout << "Pasien Prec tidak ditemukan\n";
             }
-        } else if (pilih == 7) {
+
+        }else if (pilih == 4 && poli != nullptr) {
+            if (poli->firstChild != nullptr) {
+                P = poli->firstChild;
+                poli->firstChild = P->nextC;
+                P->nextC = nullptr;
+                poli->infoP.jumlahPasien--;
+
+                cout << "Pasien dihapus\n";
+            } else {
+                cout << "Tidak ada pasien\n";
+            }
+
+        }else if (pilih == 5 && poli != nullptr) {
+            if (poli->firstChild == nullptr)
+                cout << "Tidak ada pasien\n";
+            else if (poli->firstChild->nextC == nullptr) {
+                P = poli->firstChild;
+                poli->firstChild = nullptr;
+                poli->infoP.jumlahPasien--;
+                cout << "Pasien dihapus\n";
+            } else {
+                addressC Q = poli->firstChild;
+                while (Q->nextC->nextC != nullptr)
+                    Q = Q->nextC;
+                P = Q->nextC;
+                Q->nextC = nullptr;
+                poli->infoP.jumlahPasien--;
+                cout << "Pasien dihapus\n";
+            }
+
+        }else if (pilih == 6 && poli != nullptr) {
+            cout << "Masukkan ID Pasien (Prec): ";
+            cin >> idPrec;
+
+            Prec = poli->firstChild;
+            while (Prec != nullptr && Prec->info.ID != idPrec)
+                Prec = Prec->nextC;
+
+            if (Prec != nullptr && Prec->nextC != nullptr) {
+                P = Prec->nextC;
+                Prec->nextC = P->nextC;
+                P->nextC = nullptr;
+                poli->infoP.jumlahPasien--;
+                cout << "Pasien dihapus\n";
+            } else {
+                cout << "Delete After gagal\n";
+            }
+
+        }else if (pilih == 7) {
             cout << "Masukkan ID Pasien: ";
             cin >> idPasien;
 
-            addressP temp = LC.first;
-            bool found = false;
+            bool ketemu = false;
+            addressP par = LC.first;
 
-            while (temp != nullptr) {
-                P = temp->firstChild;
-                while (P != nullptr) {
-                    if (P->info.ID == idPasien) {
-                        cout << "\n=== PASIEN DITEMUKAN ===\n";
-                        cout << "Nama: " << P->info.nama << endl;
-                        cout << "Poli: " << temp->infoP.namaPoli << endl;
-                        found = true;
+            while (par != nullptr && !ketemu) {
+                addressC c = par->firstChild;
+                while (c != nullptr) {
+                    if (c->info.ID == idPasien) {
+                        cout << "Nama: " << c->info.nama << endl;
+                        cout << "Poli: " << par->infoP.namaPoli << endl;
+                        ketemu = true;
                         break;
                     }
-                    P = P->nextC;
+                    c = c->nextC;
                 }
-                if (found) break;
-                temp = temp->next;
+                par = par->next;
             }
 
-            if (!found)
-                cout << "Pasien tidak ditemukan!\n";
+            if (!ketemu){
+                cout << "Pasien tidak ditemukan\n";
+            }
+
         } else if (pilih == 8) {
             addressP q = LC.first;
-
             while (q != nullptr) {
-                cout << "\n=== POLI: " << q->infoP.namaPoli << " ===\n";
-                // bungkus q->firstChild ke ListChild supaya printInfoChild kompatibel
-                ListChild tempChild;
-                tempChild.firstC = q->firstChild;
-                printInfoChild(tempChild);
+                cout << "\n=== POLI " << q->infoP.namaPoli << " ===\n";
+                printInfoChild(q->firstChild);
                 q = q->next;
             }
-        } else if (pilih == 9) {
-            cout << "Kembali ke menu Admin...\n";
-        } else {
-            cout << "Pilihan tidak valid!\n";
         }
     }
 }
