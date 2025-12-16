@@ -34,7 +34,7 @@ void menuPoli(ListParent &LP){
     Poli x;
     addressP P = nullptr;
     addressP Prec = nullptr;
-    static int i = 1000;
+    static int i = 1003;
     while (pilih != 9) {
         cout << endl;
         cout << "============= Menu Poli ============\n";
@@ -184,7 +184,7 @@ void menuPasien(ListParent &LC){
     addressC P = nullptr, Prec = nullptr;
     addressP poli = nullptr;
     int idPoli, idPasien, idPrec;
-    static int autoID = 1000;
+    static int autoID = 106;
 
     while (pilih != 9) {
         cout << "\n============= Menu Pasien ============\n";
