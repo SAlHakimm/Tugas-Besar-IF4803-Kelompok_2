@@ -361,6 +361,7 @@ void menuPasien(ListParent &LC){
             addressP q = LC.first;
             while (q != nullptr) {
                 cout << "\n=== POLI " << q->infoP.namaPoli << " ===\n";
+                cout << "\n=== ID POLI : " << q->infoP.IDPoli << " ===\n";
                 printInfoChild(q->firstChild);
                 q = q->next;
             }
