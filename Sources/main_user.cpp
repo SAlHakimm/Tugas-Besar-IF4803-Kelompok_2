@@ -13,8 +13,8 @@ void menuUser(ListParent &L){
         cout << "\n====== MENU USER ======\n";
         cout << "1. Cari Pasien berdasarkan ID\n";
         cout << "2. Tampilkan Semua Pasien\n";
-        cout << "3. Riwayat Penyakit Pasien\n";
-        cout << "4. Riwayat Kunjungan Pasien\n";
+        cout << "3. Tampilkan Penyakit Pasien\n";
+        cout << "4. Tampilkan Kunjungan Pasien\n";
         cout << "5. Rata-rata Umur per Poli\n";
         cout << "6. Back\n";
         cout << "Pilih: ";
@@ -125,7 +125,7 @@ void initDummyData(ListParent &L) {
     Poli p;
     dataPasien x;
 
-    int idPoli = 1;
+    int idPoli = 1000;
     int idPasien = 100;
 
     // ===== POLI UMUM =====

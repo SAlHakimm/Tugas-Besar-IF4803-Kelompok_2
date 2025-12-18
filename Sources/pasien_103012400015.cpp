@@ -40,43 +40,18 @@ bool isEmptyChild(ListChild L) {
     return L.firstC == nullptr;
 }
 
-void sortByUmur(ListChild &L) {
-    bool swapped;
-    dataPasien temp;
-    addressC current;
-    if (isEmptyChild(L) || L.firstC->nextC == nullptr) {
-        cout << "List Kosong" << endl;
-    }
-
-    do {
-        swapped = false;
-        current = L.firstC;
-        while (current->nextC != nullptr) {
-            if (current->info.umur > current->nextC->info.umur) {
-                temp = current->info;
-                current->info = current->nextC->info;
-                current->nextC->info = temp;
-                swapped = true;
-            }
-            current = current->nextC;
-        }
-    } while (swapped);
-}
-
 void riwayatPenyakit(addressC firstChild, string namaPasien){
     addressC P = firstChild;
 
     while (P != nullptr) {
         if (P->info.nama == namaPasien) {
-            cout << "=== RIWAYAT PENYAKIT PASIEN ===\n";
+            cout << "=== TAMPILAN PENYAKIT PASIEN ===\n";
             cout << "Nama             : " << P->info.nama << endl;
             cout << "Umur             : " << P->info.umur << endl;
             cout << "Penyakit         : " << P->info.penyakit << endl;
             cout << "ID               : " << P->info.ID << endl;
             cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
             cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
-            cout << "Nomor Antrian    : " << P->info.nomorAntrian << endl;
-            cout << "Prioritas        : " << P->info.prioritas << endl;
             cout << "===============================\n";
         }
         P = P->nextC;
@@ -88,15 +63,17 @@ void riwayatKunjungan(addressC firstChild, string namaPasien){
 
     while (P != nullptr) {
         if (P->info.nama == namaPasien) {
-            cout << "=== RIWAYAT KUNJUNGAN PASIEN ===\n";
+            cout << "=== TAMPILAN KUNJUNGAN PASIEN ===\n";
             cout << "Nama             : " << P->info.nama << endl;
             cout << "Umur             : " << P->info.umur << endl;
             cout << "Penyakit         : " << P->info.penyakit << endl;
             cout << "ID               : " << P->info.ID << endl;
             cout << "Poli Tujuan      : " << P->info.poliTujuan << endl;
             cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
+            cout << "Nomor Antrian    : " << P->info.nomorAntrian << endl;
+            cout << "Prioritas        : " << P->info.prioritas << endl;
             cout << "===============================\n";
-            return; // aman: stop di poli ini
+            return;
         }
         P = P->nextC;
     }

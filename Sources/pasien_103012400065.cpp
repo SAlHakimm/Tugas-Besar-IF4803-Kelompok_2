@@ -76,44 +76,4 @@ void printInfoChild(addressC first){
     }
 }
 
-void searchByPenyakit(ListChild L, string penyakit){
-addressC P = L.firstC;
-    bool ketemu = false;
 
-    while (P != nullptr) {
-        if (P->info.penyakit == penyakit) {
-            if (!ketemu) {
-                cout << "\n=== Hasil Pencarian Pasien dengan Penyakit: " << penyakit << " ===\n";
-            }
-            ketemu = true;
-
-            cout << "Nama: " << P->info.nama << endl;
-            cout << "Umur: " << P->info.umur << endl;
-            cout << "ID: " << P->info.ID << endl;
-            cout << "Poli Tujuan: " << P->info.poliTujuan << endl;
-            cout << "Tanggal Kunjungan: " << P->info.tanggalKunjungan << endl;
-            cout << "Nomor Antrian: " << P->info.nomorAntrian << endl;
-            cout << "Prioritas: " << P->info.prioritas << endl;
-            cout << "---------------------------------------\n";
-        }
-        P = P->nextC;
-    }
-
-    if (!ketemu) {
-        cout << "Tidak ada pasien dengan penyakit \"" << penyakit << "\".\n";
-    }
-}
-
-int countPasienPerPoli(ListChild L, string poliName){
-    addressC P = L.firstC;
-    int count = 0;
-
-    while (P != nullptr) {
-        if (P->info.poliTujuan == poliName) {
-            count++;
-        }
-        P = P->nextC;
-    }
-
-    return count;
-}

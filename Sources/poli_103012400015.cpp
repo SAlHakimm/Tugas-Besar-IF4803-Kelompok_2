@@ -75,14 +75,3 @@ void printInfoParent(ListParent L) {
     }
 }
 
-
-int hitungJumlahPasienPoli(ListParent L) {
-    int totalPasien = 0;
-    addressP P = L.first;
-    while (P != nullptr) {
-        totalPasien += P->infoP.jumlahPasien;
-        P = P->next;
-    }
-    return totalPasien;
-}
-
